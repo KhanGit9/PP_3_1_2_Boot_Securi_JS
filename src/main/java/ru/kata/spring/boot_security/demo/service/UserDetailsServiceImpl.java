@@ -15,12 +15,12 @@ import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService, UserService {
 
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -48,19 +48,20 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     public User getUserById(int id) {
         return userRepository.findById(id).get();
     }
-    @Transactional
 
+    @Transactional
     @Override
     public void updateUserById(int id, User user) {
         user.setId(id);
         userRepository.save(user);
     }
-    @Transactional
 
+    @Transactional
     @Override
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
     }
+
     @Transactional
     @Override
     public void saveUser(User user) {
@@ -70,12 +71,8 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public Set<Role> getRolesById(String rolesId) {
-        Set<Role> roleSet = new HashSet<>();
-        for (Role role:roleRepository.findAll()) {
-            if(rolesId.contains(String.valueOf(role.getId()))) {
-                roleSet.add(role);
-            }
-        }
-        return roleSet;
+        return roleRepository.findAll().stream().
+                filter(role -> rolesId.contains(String.valueOf(role.getId())))
+                .collect(Collectors.toSet());
     }
 }
