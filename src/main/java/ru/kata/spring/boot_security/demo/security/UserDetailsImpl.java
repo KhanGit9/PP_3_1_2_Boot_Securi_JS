@@ -1,25 +1,24 @@
 package ru.kata.spring.boot_security.demo.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 
 import java.util.Collection;
+import java.util.Set;
+
 public class UserDetailsImpl implements UserDetails {
 
-    private User user;
+    private static User user;
 
     public UserDetailsImpl(User user) {
         this.user = user;
     }
 
-//    public static UserDetails getFrom(User user) {
-//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getRoles());
-//    }
-
+    public void showUser() {
+        System.out.println(user.toString());
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles();
@@ -33,6 +32,14 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public String getUsername() {
         return user.getUsername();
+    }
+
+    public Integer getUserId() {
+        return user.getId();
+    }
+
+    public Set<Role> getRoles() {
+        return user.getRoles();
     }
 
     @Override

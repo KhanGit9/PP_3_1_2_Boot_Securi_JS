@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home page</title>
+</head>
+<body>
+<div>
+    <table th:align="center" th:border="1">
+        <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>PASSWORD</th>
+            <th>ROLES</th>
+        </tr>
+
+        <tr>
+            <td th:text="${user.getUserId()}">value</td>
+            <td th:text="${user.getUsername()}">value</td>
+            <td th:text="${user.getPassword()}">value</td>
+            <td th:text="${user.getRoles()}">value</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

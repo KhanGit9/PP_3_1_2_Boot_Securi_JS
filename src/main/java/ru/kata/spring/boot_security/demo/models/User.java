@@ -1,7 +1,7 @@
 package ru.kata.spring.boot_security.demo.models;
 
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -25,6 +25,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @Fetch(FetchMode.JOIN)
+    @ToString.Exclude
     private Set<Role> roles;
 
 }

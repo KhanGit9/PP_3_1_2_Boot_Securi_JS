@@ -31,13 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/login", "/").permitAll()
+                .antMatchers("/login", "/new").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successUserHandler)
                 .permitAll()
                 .and()
-                .logout().logoutUrl("/logout")
+//                .formLogin().loginPage("/login").loginProcessingUrl("/login")
+//                .and()
+                .logout()
                 .permitAll();
     }
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:method="PATCH" th:action="@{/admin/change_user/{id}/(id=${user.getId()})}" th:object="${user}">
+        <table th:border="1">
+            <tr>
+                <th>
+                    <label for="username" >Введите username:</label>
+                </th>
+                <th>
+                    <label for="password">Введите пароль:</label>
+                </th>
+                <th>
+                    <label for="role">Chose roles for this user</label>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" th:field="*{username}" id="username" th:value="${user.getUsername()}"/>
+                </td>
+                <td>
+                    <input type="password" th:field="*{password}" id="password" th:value="${user.getPassword()}"/>
+
+                </td>
+
+                <td th:each="role : ${allRoles}">
+                    <input name="rolesId" type="checkbox" th:text="${role.toString()}"
+                           id="role" th:value="${role.id}" th:field="*{roles}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Update">
+                </td>
+
+        </table>
+    </form>
+</div>
+<table>
+    <tr>
+        <th>
+            <h2>Click on the picture to Log out this site and watch Naruto</h2>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <p><a href="/logaut"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4B_qCvhxy-UptqubYsQE5rMUbRIiy45Wi8Q&usqp=CAU"></a> </p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
