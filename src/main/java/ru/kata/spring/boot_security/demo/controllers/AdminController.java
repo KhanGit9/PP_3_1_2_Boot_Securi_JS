@@ -38,7 +38,7 @@ public class AdminController {
     }
 
     @GetMapping("/user/{id}")
-    public String editUser(@PathVariable("id") Integer id, Model model) {
+    public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("allRoles", roleRepository.findAll());
         return "/admin/editPage";
@@ -47,10 +47,9 @@ public class AdminController {
     @PatchMapping("/change_user/{id}")
     public String changeUser(@RequestParam("roles") String role,
                              @ModelAttribute("user") User user,
-                             @PathVariable("id") Integer id) {
-        user.setId(id);
+                             @PathVariable("id") int id) {
         user.setRoles(userService.getRolesById(role));
-        userService.saveUser(user);
+        userService.updateUserById(id, user);
         return "redirect:/admin";
     }
 

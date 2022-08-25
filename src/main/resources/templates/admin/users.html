@@ -12,6 +12,7 @@
             <th>User ID</th>
             <th>Username</th>
             <th>User's role</th>
+            <th>Do</th>
         </tr>
         <tr th:each="user:${users}">
             <td th:align="center" th:text="${user.getId()}">ID</td>
@@ -31,5 +32,17 @@
 
     </table>
 </div>
+<table>
+    <tr>
+        <th>
+            <h2>Click on the picture to Log out this site and watch Naruto</h2>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <p><a href="/logaut"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4B_qCvhxy-UptqubYsQE5rMUbRIiy45Wi8Q&usqp=CAU"></a> </p>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <title>Registration</title>
 </head>
-<body>
-    <div>
-        <form th:method="POST" th:action="@{/new}" th:object="${newUser}">
-            <table th:border="1">
-                <tr>
-                    <th>
-                        <label for="username">Enter Username</label>
-                    </th>
-                    <th>
-                        <label for="password">Create your password</label>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" th:field="*{username}" id="username">
-                    </td>
-                    <td>
-                        <input type="password" th:field="*{password}" id="password">
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <input type="submit" value="Create User">
-                    </th>
-                </tr>
-            </table>
-        </form>
-    </div>
-</body>
+<!--<body>-->
+<!--    <div>-->
+<!--        <form th:method="POST" th:action="@{/new}" th:object="${newUser}">-->
+<!--            <table th:border="1">-->
+<!--                <tr>-->
+<!--                    <th>-->
+<!--                        <label for="username">Enter Username</label>-->
+<!--                    </th>-->
+<!--                    <th>-->
+<!--                        <label for="password">Create your password</label>-->
+<!--                    </th>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <input type="text" th:field="*{username}" id="username">-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <input type="password" th:field="*{password}" id="password">-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <th>-->
+<!--                        <input type="submit" value="Create User">-->
+<!--                    </th>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</body>-->
 </html>

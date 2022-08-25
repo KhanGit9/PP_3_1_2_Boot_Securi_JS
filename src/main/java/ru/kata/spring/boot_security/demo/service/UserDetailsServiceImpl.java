@@ -11,7 +11,6 @@ import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
-import ru.kata.spring.boot_security.demo.security.UserDetailsImpl;
 
 import java.util.HashSet;
 import java.util.List;
@@ -34,9 +33,8 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username).orElseThrow(() ->
+        return userRepository.findUserByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException("Go to hell, user doesn't exists"));
-        return new UserDetailsImpl(user);
     }
 
 
@@ -53,8 +51,9 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Transactional
 
     @Override
-    public void updateUserById(int id) {
-
+    public void updateUserById(int id, User user) {
+        user.setId(id);
+        userRepository.save(user);
     }
     @Transactional
 

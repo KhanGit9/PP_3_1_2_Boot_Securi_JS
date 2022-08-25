@@ -13,10 +13,4 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/user").setViewName("user");
         registry.addViewController("/admin").setViewName("admin");
     }
-//    @Bean
-//    public SpringTemplateEngine templateEngine() {
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.addDialect(new SpringSecurityDialect());
-//        return templateEngine;
-//    }
 }
