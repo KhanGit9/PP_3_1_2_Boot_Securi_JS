@@ -1,6 +1,8 @@
 package ru.kata.spring.boot_security.demo;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
@@ -9,6 +11,9 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.annotation.PostConstruct;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Component
 public class InitUsersAndRoles {
@@ -22,6 +27,13 @@ public class InitUsersAndRoles {
     }
 
     @PostConstruct
+    public void checkUsersTable() {
+        if(userService.findAll().isEmpty()) {
+            createUsers();
+        }
+    }
+
+    @Transactional
     public void createUsers() {
         Role user = new Role("ROLE_USER");
         Role admin = new Role("ROLE_ADMIN");

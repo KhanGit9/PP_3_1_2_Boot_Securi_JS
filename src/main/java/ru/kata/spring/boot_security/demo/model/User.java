@@ -17,10 +17,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
+@Data
 @Table(name = "users")
-@Getter
-@Setter
-@ToString
 public class User implements UserDetails {
 
    @Id
@@ -49,15 +47,14 @@ public class User implements UserDetails {
            joinColumns = @JoinColumn(name = "user_id"),
            inverseJoinColumns = @JoinColumn(name = "role_id")
    )
-   @Fetch(FetchMode.JOIN)
-   @ToString.Exclude
    private Set<Role> roles = new HashSet<>();
 
-   public User() {
-   }
    public User(String username, String password) {
       this.username = username;
       this.password = password;
+   }
+
+   public User() {
    }
 
    @Override
@@ -94,27 +91,4 @@ public class User implements UserDetails {
       roles.add(role);
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-      User user = (User) o;
-      return id != null && Objects.equals(id, user.id);
-   }
-
-   @Override
-   public int hashCode() {
-      return getClass().hashCode();
-   }
-
-   @Override
-   public String toString() {
-      return "User{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + username + '\'' +
-              ", roleList=" + roles +
-              '}';
-   }
 }

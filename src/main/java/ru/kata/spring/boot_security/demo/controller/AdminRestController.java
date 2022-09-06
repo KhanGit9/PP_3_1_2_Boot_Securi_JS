@@ -23,6 +23,7 @@ public class AdminRestController {
         this.userService = userService;
         this.roleService = roleService;
     }
+
     @GetMapping("/users")
     public ResponseEntity<List<User>> showAllUsers() {
         List<User> users = userService.findAll();

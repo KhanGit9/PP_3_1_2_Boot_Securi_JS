@@ -17,13 +17,17 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
+    @Override
     public Set<Role> findAll() {
         return new HashSet<>(roleRepository.findAll());
     }
 
+    @Override
     public Role findByName(String name) {
         return roleRepository.findByName(name);
     }
+
+    @Override
     @Transactional
     public void save(Role role) {
         roleRepository.save(role);
