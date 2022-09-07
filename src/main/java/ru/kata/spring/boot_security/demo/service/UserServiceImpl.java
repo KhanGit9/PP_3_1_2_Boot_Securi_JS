@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     @Transactional
     public void updateUser(User user) {
-        if (!user.getPassword().equals(userRepository.getById(user.getId()).getPassword())) {
+        if (!user.getPassword().equals(userRepository.findById(user.getId()).get().getPassword())) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
         userRepository.save(user);
@@ -64,4 +64,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return  userRepository.findByUsername(email);
     }
 
+    @Override
+    public User getUserWithHisRoles(Long id) {
+        return userRepository.findById(id).get();
+    }
 }

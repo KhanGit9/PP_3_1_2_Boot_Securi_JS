@@ -34,7 +34,7 @@ public class AdminRestController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> showUser(@PathVariable Long id) {
-        User user = userService.findById(id);
+        User user = userService.getUserWithHisRoles(id);
         return user != null
                 ? new ResponseEntity<>(user, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
