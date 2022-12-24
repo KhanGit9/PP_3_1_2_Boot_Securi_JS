@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo;
+package ru.kata.spring;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
@@ -44,11 +44,10 @@ public class InitUsersAndRoles {
         Set<Role> roles = Set.of(user, admin);
 
         User user1 = new User("2@2", "2");
-        //"$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e"
+
         User user2 = new User("1@1","1");
-        //"$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e"
+
         User user3 = new User("ramz@mail.ru", "123");
-        //"$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e"
 
         user1.setRoles(roles);
         user2.setRoles(roles);
@@ -58,16 +57,13 @@ public class InitUsersAndRoles {
         user3.setLastName("Usman");
         user3.setAge(40);
 
-
         user1.setFirstName("Khasan");
         user1.setLastName("Zandac");
         user1.setAge(35);
 
-
         user2.setFirstName("Usman");
         user2.setLastName("Kardan");
         user2.setAge(14);
-
 
         userService.saveUser(user1);
         userService.saveUser(user2);
